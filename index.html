@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>reCAPTCHA v3 Example</title>
+ <script src="https://www.google.com/recaptcha/api.js?render=GOOGLE_SITE_KEY"></script>
+ </script>
+</head>
+<body>
+
+ <button id="recaptchaButton" onclick="onClick(event)">Verify with reCAPTCHA</button>
+ <pre id="result"></pre>
+ <script>
+    const recaptchaButton = document.getElementById('recaptchaButton');
+    const result = document.getElementById('result');
+    recaptchaButton.onclick = function onClick(e) {
+      e.preventDefault();
+      grecaptcha.ready(function() {
+        grecaptcha.execute('GOOGLE_SITE_KEY', {action: 'login'}).then(async (token) => {
+          // You can now send this token to your server and validate it
+          console.log('reCAPTCHA token:', token);
+          const res = await fetch('/captcha', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ token: token })
+          });
+          const data = await res.json();
+          result.innerText = JSON.stringify(data, null, 2);
+
+        });
+      });
+  }
+</script>
+
+</body>
+</html>
+

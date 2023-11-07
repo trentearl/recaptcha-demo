@@ -1,0 +1,22 @@
+{
+  "name": "recaptcha-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "bun --hot src/index.ts"
+  },
+  "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "koa-bodyparser": "^4.4.1",
+    "axios": "^1.5.0",
+    "koa": "^2.14.2"
+  },
+  "devDependencies": {
+    "@types/koa-bodyparser": "^4.3.12",
+    "@types/koa": "^2.13.6",
+    "@types/node": "^20.6.2",
+    "typescript": "^5.0.2"
+  }
+}
